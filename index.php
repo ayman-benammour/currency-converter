@@ -1,7 +1,8 @@
 <?php
 
 // Config
-include './includes/config.php'
+include './includes/config.php';
+include './includes/handleForm.php';
 
 ?>
 
@@ -22,7 +23,7 @@ include './includes/config.php'
             </header>
 
             <div class="description">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A laborum porro accusantium incidunt est distinctio ut quasi rem at aspernatur quae culpa consectetur sed ipsam neque, qui nostrum sequi beatae?</p>
+                <span>Convert</span>
             </div>
 
             <div class="illustration">
@@ -36,61 +37,82 @@ include './includes/config.php'
     <!-- Content -->
     <section class="content">
 
+        <!-- Grid -->
         <div class="grid">
 
-            <div class="card cardTop">
-                
-                <div class="cardFront">
+            <!-- Form -->
+            <form action="#" method="GET">
 
-                    <datalist id="currenciesList">
-                        <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
-                            <option value="<?= $value->currency_code ?>"><?= $value->currency_name ?></option>
-                        <?php } ?>
-                    </datalist>
+                <!-- Card top -->
+                <div class="card cardTop">
 
-                    <div class="currencyFrom">
+                    <div class="cardFront">
 
-                        <h2><span>From •</span> Choose the base currency you would like to use for your rates.</h2>
+                        <datalist id="currenciesList">
+                            <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
+                                <option value="<?= $value->currency_code ?>"><?= $value->currency_name ?></option>
+                            <?php } ?>
+                        </datalist>
 
-                        <form action="#" method="GET">
-                            <input placeholder="USD" type="text" list="currenciesList" />
-                        </form>
+                        <!-- Currency from -->
+                        <div class="currencyFrom">
+                            <h2><span>From •</span> Choose the base currency you would like to use for your rates.</h2>
+                            <input placeholder="USD" maxlength="3" type="text" list="currenciesList" name="currencyFrom">
+                        </div>
 
-                    </div>
+                        <!-- Currency amount -->
+                        <div class="currencyAmount">
+                            <h2><span>Amount •</span> Choose the amount to convert</h2>
+                            <input placeholder="100" type="number" name="currencyAmount">
+                        </div>
 
-                    <div class="currencyAmount">
-
-                        <h2><span>Amount •</span> Choose the amount to convert</h2>
-
-                        <form action="#" method="GET">
-                            <input placeholder="100" type="number" />
-                        </form>
-
-                    </div>
-
-                    <div class="currencyTo">
-
-                        <h2><span>To •</span> Choose the currency you would like to convert to</h2>
-
-                        <form action="#" method="GET">
-                            <input placeholder="EUR" type="text" list="currenciesList" />
-                        </form>
+                        <!-- Currency to -->
+                        <div class="currencyTo">
+                            <h2><span>To •</span> Choose the currency you would like to convert to</h2>
+                            <input placeholder="EUR" maxlength="3" type="text" list="currenciesList" name="currencyTo">
+                        </div>
 
                     </div>
+
+                    <div class="cardBack"></div>
 
                 </div>
-            
-                <div class="cardBack"></div>
-            </div>
-            
-            <div class="buttonConvert">
-                <img src="./assets/images/button.svg" alt="Button convert">
-            </div>
 
-            <div class="card cardBottom">
-                <div class="cardFront"></div>
-                <div class="cardBack"></div>
-            </div>
+                <!-- Button convert -->
+                <div class="buttonConvert">
+                    <input type="submit" value="">
+                </div>
+
+                <!-- Card bottom -->
+                <div class="card cardBottom">
+
+                    <div class="cardFront">
+
+                        <?php if(!empty($errorMessages)) { ?>
+                            
+                            <!-- Messages error -->
+                            <div class="errors">
+                                <?php foreach ($errorMessages as $message) { ?>
+                                    <p><?= $message ?></p>
+                                <?php } ?>
+                            </div>
+
+                        <?php } else { ?>
+
+                            <!-- Result -->
+                            <div class="result">
+                                <h2>The result is : <span><?= round($resultConvert->response->value, 2) ?></span>&NonBreakingSpace;<?= $resultConvert->response->to?></h2>
+                            </div>
+
+                        <?php } ?>
+
+                    </div>
+                    
+                    <div class="cardBack"></div>
+
+                </div>
+
+            </form>
 
         </div>
 

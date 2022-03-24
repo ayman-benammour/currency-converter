@@ -75,16 +75,34 @@ body
     color: #ffffff;
 }
 
+@keyframes text-translate
+{
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
 .main .grid .description
 {
     margin-bottom: 32px;
-    font-size: 20px;
+    overflow: hidden;
 }
 
+.main .grid .description span
+{
+    display: block;
+    font-size: 100px;
+    text-transform: uppercase;
+    animation-name: text-translate;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
 
 .main .grid .illustration
 {
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .content
@@ -103,22 +121,28 @@ body
 
 .content .grid
 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     padding: 40px;
     height: 100%;
 }
 
-.content .grid .card
+.content .grid form
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .grid form .card
 {
     width: 100%;
     height: 25%;
     position: relative;
 }
 
-.content .grid .card .cardFront
+.content .grid form .card .cardFront
 {
     display: flex;
     flex-direction: column;
@@ -129,25 +153,32 @@ body
     background-color: #fbf8f3;
     z-index: 1;
     border: solid 4px #000000;
-    font-size: 20px;
     padding: 20px;
 }
 
-.content .grid .card .cardFront > div
+.content .grid form .card .cardFront > div
 {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    font-size: 20px;
 }
 
-.content .grid .card .cardFront h2 span
+.content .grid form .cardBottom .cardFront > div
+{
+    font-size: 28px;
+    justify-content: center;
+}
+
+
+.content .grid form .card .cardFront h2 span
 {
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.content .grid .card .cardFront form
+.content .grid form .card .cardFront input
 {
     background-color: #000000;
     color: #ffffff;
@@ -156,13 +187,7 @@ body
     height: 50px;
 }
 
-.content .grid .card .cardFront input
-{
-    width: 100%;
-    height: 100%;
-}
-
-.content .grid .card .cardBack
+.content .grid form .card .cardBack
 {
     width: 97%;
     height: 94%;
@@ -178,16 +203,20 @@ body
     100% { transform: rotate(360deg); }
 }
 
-.content .grid .buttonConvert
+.content .grid form .buttonConvert
 {
-    cursor: pointer;
     animation-name: buttonConvert-rotation;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
 
-.content .grid .buttonConvert img
+.content .grid form .buttonConvert input
 {
-    height: 100%;
+    background-image: url(../images/button.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
 }

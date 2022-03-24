@@ -43,14 +43,3 @@ function apiCall($url)
     $result = json_decode($result);
     return $result;
 }
-
-$apiKey = '525ea3ee8f819d80c7ad9a062052e982';
-
-$urlCurrenciesList = 'https://api.currencyscoop.com/v1/currencies?api_key=' . $apiKey;
-
-$resultCurrenciesList = apiCall($urlCurrenciesList);
-
-// echo '<pre>';
-// print_r($resultCurrenciesList->response->fiats);
-// echo '</pre>';
-// exit;
