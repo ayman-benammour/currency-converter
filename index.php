@@ -39,21 +39,45 @@ include './includes/config.php'
         <div class="grid">
 
             <div class="card cardTop">
+                
                 <div class="cardFront">
-                    <h2>Choose the currency you would like to convert</h2>
-                    <div class="currency">
 
-                    <form action="#" method="GET">
-                        <datalist id="currenciesList">
-                            <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
-                                <option value="<?= $value->currency_code ?>"><?= $value->currency_name ?></option>
-                            <?php } ?>
-                        </datalist>
-                        <input type="text" name="automaker" list="currenciesList" />
+                    <datalist id="currenciesList">
+                        <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
+                            <option value="<?= $value->currency_code ?>"><?= $value->currency_name ?></option>
+                        <?php } ?>
+                    </datalist>
 
-                    </form>
+                    <div class="currencyFrom">
+
+                        <h2><span>From •</span> Choose the base currency you would like to use for your rates.</h2>
+
+                        <form action="#" method="GET">
+                            <input placeholder="USD" type="text" list="currenciesList" />
+                        </form>
 
                     </div>
+
+                    <div class="currencyAmount">
+
+                        <h2><span>Amount •</span> Choose the amount to convert</h2>
+
+                        <form action="#" method="GET">
+                            <input placeholder="100" type="number" />
+                        </form>
+
+                    </div>
+
+                    <div class="currencyTo">
+
+                        <h2><span>To •</span> Choose the currency you would like to convert to</h2>
+
+                        <form action="#" method="GET">
+                            <input placeholder="EUR" type="text" list="currenciesList" />
+                        </form>
+
+                    </div>
+
                 </div>
             
                 <div class="cardBack"></div>
