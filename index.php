@@ -17,7 +17,7 @@ include './includes/handleForm.php';
 
             <!-- Navigation -->
             <header class="navigation">
-                <a href="#" class="convertButton buttonActive">Convert</a>
+                <a href="./index.php" class="convertButton buttonActive">Convert</a>
                 <a href="#" class="currenciesButton">Currencies</a>
                 <a href="#" class="aboutButton">About</a>
             </header>
@@ -92,12 +92,13 @@ include './includes/handleForm.php';
                             
                             <!-- Messages error -->
                             <div class="errors">
+                                <h2>Errors :</h2>
                                 <?php foreach ($errorMessages as $message) { ?>
                                     <p><?= $message ?></p>
                                 <?php } ?>
                             </div>
 
-                        <?php } else { ?>
+                        <?php } elseif(!empty($_GET)) { ?>
 
                             <!-- Result -->
                             <div class="result">
