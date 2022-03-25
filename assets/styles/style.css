@@ -222,7 +222,7 @@ body
 .content .grid form .buttonConvert
 {
     animation-name: buttonConvert-rotation;
-    animation-duration: 3s;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }

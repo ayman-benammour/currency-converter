@@ -19,7 +19,7 @@ include './includes/handleForm.php';
             <header class="navigation">
                 <a href="./index.php" class="convertButton buttonActive">Convert</a>
                 <a href="#" class="currenciesButton">Currencies</a>
-                <a href="#" class="aboutButton">About</a>
+                <a href="./about.php" class="aboutButton">About</a>
             </header>
 
             <div class="description">

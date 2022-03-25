@@ -1,0 +1,10 @@
+.main .grid
+{
+    justify-content: flex-start;
+}
+
+.main .grid .text
+{
+    font-size: 24px;
+    margin-top: 32px;
+}
