@@ -3,6 +3,27 @@ body
     font-family: 'Poppins', sans-serif;
 }
 
+/* SCROLL BAR */
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+  ::-webkit-scrollbar-track
+{
+    background: #424242;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: #686868;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background: #7b7b7b; 
+}
+
 .main
 {
     background-color: #ede7d7;
@@ -11,6 +32,7 @@ body
     width: 50%;
     top: 0px;
     left: 0px;
+    overflow: auto;
 }
 
 .main .grid

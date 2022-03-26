@@ -1,0 +1,31 @@
+.main .grid
+{
+    height: auto;
+}
+
+.main .grid .allCurencies
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.main .grid .allCurencies .caseCurrency
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0ba40;
+    width: 80px;
+    height: 80px;
+    margin: 8px;
+    font-size: 24px;
+    border-radius: 2px;
+    transition: background 0.5s cubic-bezier(0.11, 0.7, 0, 1);
+    cursor: pointer;
+}
+
+.main .grid .allCurencies .caseCurrency:hover
+{
+    background-color: #357af3;
+}
