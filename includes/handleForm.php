@@ -1,7 +1,5 @@
 <?php
 
-$apiKey = '525ea3ee8f819d80c7ad9a062052e982';
-
 if(!empty($_GET))
 {
     $errorMessages = [];
@@ -40,7 +38,3 @@ if(!empty($_GET))
     // print_r($resultConvert);
     // echo '</pre>';
 }
-
-// ApiCall for the urlCurrenciesList
-$urlCurrenciesList = 'https://api.currencyscoop.com/v1/currencies?api_key=' . $apiKey;
-$resultCurrenciesList = apiCall($urlCurrenciesList);

@@ -2,13 +2,23 @@
 
 // Config
 include './includes/config.php';
-include './includes/handleForm.php';
+
+
+
+
+$currencyActive = $_GET['currency'];
+
+echo '<pre>';
+print_r($currencyActive);
+echo '</pre>';
 
 ?>
 
 <!-- Header -->
 <?php include './chunks/header.php' ?>
 <link rel="stylesheet" href="../assets/styles/currencies.css">
+<link rel="stylesheet" href="./includes/style.php">
+<script src="./assets/js/script.js"></script>
 </head>
 <body>
 
@@ -29,9 +39,9 @@ include './includes/handleForm.php';
 
                 <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
 
-                    <div class="caseCurrency">
+                    <a href="./currencies.php?currency=<?= $value->currency_code ?>" class="caseCurrency currency<?= $value->currency_code ?>">
                         <?= $value->currency_code ?>
-                    </div>
+                    </a>
 
                 <?php } ?>
 
@@ -39,15 +49,42 @@ include './includes/handleForm.php';
 
     </main>
 
-    <!-- Content -->
-    <section class="content">
+    <?php if(!empty($_GET)) { ?>
 
-        <!-- Grid -->
-        <div class="grid">
+        <!-- Content -->
+        <section class="content">
 
-        </div>
+            <!-- Grid -->
+            <div class="grid">
 
-    </section>
+                <div class="card">
+
+                    <div class="cardFront">
+                        <div class="map"></div>
+                    </div>
+
+                    <div class="cardBack"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    <?php } else { ?>
+
+        <!-- Content -->
+        <section class="content">
+        </section>
+
+    <?php } ?>
 
 
+
+
+    
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=///&callback=initMap&v=weekly&channel=2"
+      async
+    ></script>
 <?php include './chunks/footer.php' ?>
