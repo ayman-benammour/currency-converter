@@ -46,20 +46,73 @@
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: auto;
 }
 
 .content .grid .card .cardFront
 {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 98%;
-    height: 98%;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
     position: absolute;
     background-color: #fbf8f3;
     z-index: 1;
     border: solid 4px #000000;
-    padding: 20px;
+    padding: 40px;
+}
+
+.content .grid .card .cardFront .title
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.content .grid .card .cardFront .title .currencyName
+{
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.content .grid .card .cardFront .title .currencyCode
+{
+    font-size: 24px;
+}
+
+.content .grid .card .cardFront .countries
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.content .grid .card .cardFront .countries h2
+{
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.content .grid .card .cardFront .countries .allCountries
+{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-bottom: 32px;
+}
+
+.content .grid .card .cardFront .countries .allCountries .country
+{
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.content .grid .card .cardFront .countries .allCountries h3
+{
+    margin-right: 8px;
 }
 
 .content .grid .card .cardBack
