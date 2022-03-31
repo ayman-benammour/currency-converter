@@ -3,6 +3,12 @@
 // Config
 include './includes/config.php';
 
+$jsonDataCountries = json_decode(file_get_contents("./includes/dataCountries.json"));
+
+echo '<pre>';
+print_r($jsonDataCountries->AD);
+echo '</pre>';
+
 $getCurrency = $_GET['currency'];
 
 // echo '<pre>';
@@ -87,13 +93,15 @@ $getCurrency = $_GET['currency'];
                                     <?php
                                         foreach ($resultCurrenciesList->response->fiats->$getCurrency->countries as $key => $country) 
                                         {
+                                            $countryWithoutBracket = trim(preg_replace('/\([^()]*\)/', '', $country));
+
                                             $urlFlags = 'https://flagcdn.com/en/codes.json';
                                             $resultFlags = apiCall($urlFlags);
                                             $arrayFlags = array_flip(json_decode(json_encode($resultFlags), true));
 
-                                            if(array_key_exists($country, $arrayFlags))
+                                            if(array_key_exists($countryWithoutBracket, $arrayFlags))
                                             { 
-                                                $srcFlag = 'https://flagcdn.com/' . $arrayFlags[$country] . '.svg';
+                                                $srcFlag = 'https://flagcdn.com/' . $arrayFlags[$countryWithoutBracket] . '.svg';
                                             }
                                             else
                                             {
@@ -103,9 +111,29 @@ $getCurrency = $_GET['currency'];
 
                                         <div class="country">
 
-                                            <h3><?= $country ?></h3>
+                                        <?php
+                                            if(array_key_exists($countryWithoutBracket, $arrayFlags))
+                                            { 
+                                                $countryCodeUpper = strtoupper($arrayFlags[$countryWithoutBracket]);
+                                            }
 
-                                            <?php if(array_key_exists($country, $arrayFlags)) { ?>
+                                            if(isset($jsonDataCountries->{$countryCodeUpper}))
+                                            { 
+                                                $lat = $jsonDataCountries->{$countryCodeUpper}->latitude;
+                                                $lng = $jsonDataCountries->{$countryCodeUpper}->longitude;
+                                            }
+                                            else
+                                            {
+                                                $lat = 'null';
+                                                $lng = 'null';
+                                            }
+                                        ?>
+
+                                            <h3 class="countryName" data-lat="<?= $lat ?>" data-lng="<?= $lng ?>">
+                                                <?= $countryWithoutBracket ?>
+                                            </h3>
+
+                                            <?php if(array_key_exists($countryWithoutBracket, $arrayFlags)) { ?>
                                                 <img src="<?= $srcFlag ?>" alt="Flag of <?= $country ?>" width="30" height="auto">
                                             <?php } ?>
 

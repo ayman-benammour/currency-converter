@@ -200,13 +200,18 @@
     });
 
     // The marker, positioned at Uluru
-    const uluru = { lat: -25.344, lng: 131.036 }
-    const marker = new google.maps.Marker(
+    const countries = document.querySelectorAll('.countryName')
+
+    countries.forEach(function(country)
+    {
+        new google.maps.Marker(
         {
-        position: uluru,
+        position: { lat: parseInt(country.dataset.lat), lng: parseInt(country.dataset.lng) },
         map: map,
         });
-  
+    })
+
+
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set("styled_map", styledMapType);
     map.setMapTypeId("styled_map");

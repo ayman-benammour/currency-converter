@@ -10,7 +10,7 @@ if(!empty($_GET))
     // echo '</pre>';
 
     // Sanatize data
-    $currencyFrom = strtoupper(trim(htmlentities($_GET['currencyFrom'])));
+    $currencyFrom = trim(htmlentities(strtoupper($_GET['currencyFrom'])));
     $currencyAmount = (int)$_GET['currencyAmount'];
     $currencyTo = strtoupper(trim(htmlentities($_GET['currencyTo'])));
 
