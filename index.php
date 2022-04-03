@@ -8,6 +8,9 @@ include './includes/handleForm.php';
 
 <!-- Header -->
 <?php include './chunks/header.php' ?>
+<title>Convert • Currency converter</title>
+</head>
+<body>
 
     <!-- Header -->
     <main class="main">
@@ -57,19 +60,19 @@ include './includes/handleForm.php';
                         <!-- Currency from -->
                         <div class="currencyFrom">
                             <h2><span>From •</span> Choose the base currency you would like to use for your rates.</h2>
-                            <input placeholder="USD" maxlength="3" type="text" list="currenciesList" name="currencyFrom">
+                            <input placeholder="USD" maxlength="3" type="text" list="currenciesList" name="currencyFrom" value="<?= $currencyFrom ?>">
                         </div>
 
                         <!-- Currency amount -->
                         <div class="currencyAmount">
                             <h2><span>Amount •</span> Choose the amount to convert</h2>
-                            <input placeholder="100" type="number" name="currencyAmount">
+                            <input placeholder="100" type="number" name="currencyAmount" value="<?= $currencyAmount ?>">
                         </div>
 
                         <!-- Currency to -->
                         <div class="currencyTo">
                             <h2><span>To •</span> Choose the currency you would like to convert to</h2>
-                            <input placeholder="EUR" maxlength="3" type="text" list="currenciesList" name="currencyTo">
+                            <input placeholder="EUR" maxlength="3" type="text" list="currenciesList" name="currencyTo" value="<?= $currencyTo ?>">
                         </div>
 
                     </div>

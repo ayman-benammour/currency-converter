@@ -1,13 +1,12 @@
 <?php
 
+$currencyFrom = '';
+$currencyAmount = '';
+$currencyTo = '';
+
 if(!empty($_GET))
 {
     $errorMessages = [];
-    
-    // Debug
-    // echo '<pre>';
-    // print_r($_GET);
-    // echo '</pre>';
 
     // Sanatize data
     $currencyFrom = trim(htmlentities(strtoupper($_GET['currencyFrom'])));
@@ -23,6 +22,10 @@ if(!empty($_GET))
     {
         $errorMessages[] = 'Missing the base currency you would like to use for your rates';
     }
+    elseif(!property_exists($resultCurrenciesList->response->fiats, $currencyFrom ))
+    {
+        $errorMessages[] = 'The base currency you are looking for doesn&#8216t exist';
+    }
 
     if(empty($currencyAmount))
     {
@@ -33,8 +36,8 @@ if(!empty($_GET))
     {
         $errorMessages[] = 'Missing the currency you would like to convert to';
     }
-
-    // echo '<pre>';
-    // print_r($resultConvert);
-    // echo '</pre>';
+    elseif(!property_exists($resultCurrenciesList->response->fiats, $currencyTo ))
+    {
+        $errorMessages[] = 'The currency to convert you are looking for doesn&#8216t exist';
+    }
 }

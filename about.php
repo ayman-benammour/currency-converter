@@ -9,6 +9,7 @@ include './includes/handleForm.php';
 <!-- Header -->
 <?php include './chunks/header.php' ?>
 <link rel="stylesheet" href="../assets/styles/about.css">
+<title>About • Currency converter</title>
 </head>
 <body>
 

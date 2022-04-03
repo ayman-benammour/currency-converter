@@ -5,20 +5,7 @@ include './includes/config.php';
 
 $jsonDataCountries = json_decode(file_get_contents("./includes/dataCountries.json"));
 
-echo '<pre>';
-print_r($jsonDataCountries->AD);
-echo '</pre>';
-
-$getCurrency = $_GET['currency'];
-
-// echo '<pre>';
-// print_r($resultCurrenciesList->response->fiats->$getCurrency->countries[0]);
-// echo '</pre>';
-// exit;
-
-
-
-
+$getCurrency = trim(htmlentities(strtoupper($_GET['currency'])));
 ?>
 
 <!-- Header -->
@@ -33,6 +20,13 @@ $getCurrency = $_GET['currency'];
         font-weight: bold;
     }
 </style>
+<?php if ((!empty($_GET))) { ?>
+    <title><?= $getCurrency ?> • Currency converter</title>
+<?php } else { ?>
+    <title>Currencies • Currency converter</title>
+<?php } ?>
+
+
 
 </head>
 <body>
@@ -50,6 +44,21 @@ $getCurrency = $_GET['currency'];
                 <a href="./about.php" class="aboutButton">About</a>
             </header>
 
+            <form class="currencySearch" action="#" method="GET">
+
+                <datalist id="currenciesList">
+                    <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
+                        <option value="<?= $value->currency_code ?>"><?= $value->currency_name ?></option>
+                    <?php } ?>
+                </datalist>
+
+                <input class="currencySubmit" type="submit" value="">
+
+                <input class="currencyText" placeholder="Search the currency you want" maxlength="3" type="text" list="currenciesList" name="currency" value="<?= $getCurrency ?>">
+
+            </form>
+
+
             <div class="allCurencies">
 
                 <?php foreach ($resultCurrenciesList->response->fiats as $key => $value) { ?>
@@ -64,7 +73,7 @@ $getCurrency = $_GET['currency'];
 
     </main>
 
-    <?php if(!empty($_GET)) { $_GET['currency'] ?>
+    <?php if(!empty($_GET) && property_exists($resultCurrenciesList->response->fiats, $getCurrency )) { ?>
 
         <!-- Content -->
         <section class="content">
@@ -109,37 +118,38 @@ $getCurrency = $_GET['currency'];
                                             }
                                     ?>
 
-                                        <div class="country">
+                                    <div class="country">
 
-                                        <?php
-                                            if(array_key_exists($countryWithoutBracket, $arrayFlags))
-                                            { 
-                                                $countryCodeUpper = strtoupper($arrayFlags[$countryWithoutBracket]);
-                                            }
+                                    <?php
+                                        if(array_key_exists($countryWithoutBracket, $arrayFlags))
+                                        { 
+                                            $countryCodeUpper = strtoupper($arrayFlags[$countryWithoutBracket]);
+                                        }
 
-                                            if(isset($jsonDataCountries->{$countryCodeUpper}))
-                                            { 
-                                                $lat = $jsonDataCountries->{$countryCodeUpper}->latitude;
-                                                $lng = $jsonDataCountries->{$countryCodeUpper}->longitude;
-                                            }
-                                            else
-                                            {
-                                                $lat = 'null';
-                                                $lng = 'null';
-                                            }
-                                        ?>
+                                        if(isset($jsonDataCountries->{$countryCodeUpper}))
+                                        { 
+                                            $lat = $jsonDataCountries->{$countryCodeUpper}->latitude;
+                                            $lng = $jsonDataCountries->{$countryCodeUpper}->longitude;
+                                        }
+                                        else
+                                        {
+                                            $lat = 'null';
+                                            $lng = 'null';
+                                        }
+                                    ?>
 
-                                            <h3 class="countryName" data-lat="<?= $lat ?>" data-lng="<?= $lng ?>">
-                                                <?= $countryWithoutBracket ?>
-                                            </h3>
+                                        <h3 class="countryName" data-lat="<?= $lat ?>" data-lng="<?= $lng ?>">
+                                            <?= $countryWithoutBracket ?>
+                                        </h3>
 
-                                            <?php if(array_key_exists($countryWithoutBracket, $arrayFlags)) { ?>
-                                                <img src="<?= $srcFlag ?>" alt="Flag of <?= $country ?>" width="30" height="auto">
-                                            <?php } ?>
+                                        <?php if(array_key_exists($countryWithoutBracket, $arrayFlags)) { ?>
+                                            <img src="<?= $srcFlag ?>" alt="Flag of <?= $country ?>" width="30" height="auto">
+                                        <?php } ?>
 
                                         </div>
 
                                     <?php } ?>
+
                                 </div>
 
                             </div>
@@ -156,6 +166,31 @@ $getCurrency = $_GET['currency'];
             </div>
 
         </section>
+
+    <?php } elseif(!empty($_GET) && !property_exists($resultCurrenciesList->response->fiats, $getCurrency )) { ?>
+
+    <!-- Content -->
+    <section class="content">
+
+            <!-- Grid -->
+            <div class="grid">
+
+                <div class="card">
+
+                    <div class="cardFront">
+
+                        <!-- Title -->
+                        <div class="title">
+                            <h3>The currency you are looking for doesn't exist</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+    </section>
 
     <?php } else { ?>
 

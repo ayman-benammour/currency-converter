@@ -3,6 +3,36 @@
     height: auto;
 }
 
+.main .grid .currencySearch
+{
+    display: flex;
+    border-radius: 2px;
+    width: 100%;
+    border: solid 4px;
+    margin-bottom: 32px;
+}
+
+.main .grid .currencySearch .currencySubmit
+{
+    height: 50px;
+    width: 50px;
+    background: url(../images/search-icon.svg) no-repeat 15px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+.main .grid .currencySearch .currencyText
+{
+    height: 50px;
+    width: 100%;
+    border-radius: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+
 .main .grid .allCurencies
 {
     display: flex;
