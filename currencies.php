@@ -52,9 +52,9 @@ $getCurrency = trim(htmlentities(strtoupper($_GET['currency'])));
                     <?php } ?>
                 </datalist>
 
-                <input class="currencySubmit" type="submit" value="">
+                    <input class="currencySubmit" type="submit" value="">
 
-                <input class="currencyText" placeholder="Search the currency you want" maxlength="3" type="text" list="currenciesList" name="currency" value="<?= $getCurrency ?>">
+                    <input class="currencyText" placeholder="Search the currency you want" maxlength="3" type="text" list="currenciesList" name="currency" value="<?= $getCurrency ?>">
 
             </form>
 
